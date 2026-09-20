@@ -1,0 +1,12 @@
+# Python dependencies for the Jupyter replication notebook and analysis code.
+# pandas is pinned to the 2.x line because the notebooks rely on APIs
+# (e.g. DataFrame.fillna(method=...)) that were removed in pandas 3.0.
+pandas==2.2.3
+numpy
+statsmodels
+matplotlib
+openpyxl
+tabulate
+jupyter
+nbconvert
+ipykernel
