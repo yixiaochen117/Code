@@ -28,7 +28,9 @@ sudo apt-get install -y --no-install-recommends \
 
 echo "==> Ensuring CRAN-only R packages are installed (lfe)"
 # lfe is not packaged for apt, so compile it from CRAN only when missing.
-Rscript -e 'pkgs <- c("lfe"); missing <- pkgs[!(pkgs %in% rownames(installed.packages()))]; if (length(missing)) install.packages(missing, repos=Sys.getenv("CRAN_MIRROR", unset="'"$CRAN_MIRROR"'")) else cat("lfe already installed\n")'
+# Runs under sudo because the R site-library (/usr/local/lib/R/site-library) is
+# only writable by root.
+sudo Rscript -e 'pkgs <- c("lfe"); missing <- pkgs[!(pkgs %in% rownames(installed.packages()))]; if (length(missing)) install.packages(missing, repos="'"$CRAN_MIRROR"'") else cat("lfe already installed\n")'
 
 echo "==> Verifying R packages load"
 Rscript -e 'for (p in c("lfe","plm","lmtest","sandwich")) { suppressMessages(library(p, character.only=TRUE)); cat(p, as.character(packageVersion(p)), "OK\n") }'
