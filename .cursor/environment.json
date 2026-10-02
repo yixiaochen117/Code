@@ -1,0 +1,5 @@
+{
+  "name": "Econ 704 & Monetary Policy Replication",
+  "user": "ubuntu",
+  "install": "bash .cursor/install.sh"
+}
